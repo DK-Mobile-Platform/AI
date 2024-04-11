@@ -8,3 +8,5 @@
 1. [korean text kobart-news](https://huggingface.co/ainize/kobart-news)
 2. [korean stt git](https://github.com/topics/korean-stt)
 3. 
+# APIs
+1. [무료 api 음성인식](https://aiopen.etri.re.kr/guide/Recognition)
