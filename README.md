@@ -6,5 +6,5 @@
 
 # 모델(요약)
 1. [korean text kobart-news](https://huggingface.co/ainize/kobart-news)
-2. [korean sst git](https://github.com/topics/korean-stt)
+2. [korean stt git](https://github.com/topics/korean-stt)
 3. 
