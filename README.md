@@ -28,7 +28,11 @@ summary_text_ids = model.generate(
 print(tokenizer.decode(summary_text_ids[0], skip_special_tokens=True))
 ```
 2. [korean stt git](https://github.com/topics/korean-stt)
-3.  
+3.  [hugging face(lcw99/t5-base-korean-text-summary)](https://huggingface.co/lcw99/t5-base-korean-text-summary)
+4.  [hugging_face(eenzeenee/t5-small-korean-summarization)](https://huggingface.co/eenzeenee/t5-small-korean-summarization)
+
+
+
 # APIs
 1. [무료 api 음성인식](https://aiopen.etri.re.kr/guide/Recognition)
 ```python
