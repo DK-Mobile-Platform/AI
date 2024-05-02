@@ -1,4 +1,12 @@
 # AI
+# 프로세스
+
+1. Data input (voice)
+2. Data preprocessing
+3. Data voice to text
+4. text summarize
+
+
 
 # 데이터
 1. [한국어 대학강의](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71627)
