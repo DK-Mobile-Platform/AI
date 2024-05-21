@@ -1,31 +1,14 @@
-import text_generate
-import summarize
+import utils.text_generate as text_generate
+import utils.summarize as summarize
 import ujson
 import urllib
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from fastapi.responses import JSONResponse
 import shutil
 import os
+from pydub import AudioSegment
 app = FastAPI()
-
-
-@app.post("/uploadfile/")
-async def upload_file(file: UploadFile = File(...)):
-    try:
-        # 업로드된 파일이 음성 파일인지 확인 (확장자에 따라)
-        allowed_extensions = ("wav", "mp3", "ogg")  # 허용된 음성 파일 형식
-        file_extension = file.filename.split(".")[-1]
-        if file_extension not in allowed_extensions:
-            raise HTTPException(status_code=400, detail="Unsupported file format. Supported formats: wav, mp3, ogg")
-
-        # 파일 저장할 경로 지정 (현재 디렉토리의 uploads 폴더에 저장)
-        with open(os.path.join("uploads", file.filename), "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-        
-        return JSONResponse(status_code=200, content={"message": "File uploaded successfully"})
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"message": f"Error: {str(e)}"})
-#디비에 현재 파일 이름 
+from utils.voice_preprocessing import split_audio
 
 @app.post("/AI_process/")
 async def AI_process_start(file_name):
@@ -49,15 +32,44 @@ async def AI_process_start(file_name):
         print("text_generate is finish")
         print(f'text is {voice_text}')
         
-        summarize_text=summarize.summarize(voice_text)
+        summarize_text,img_base64=summarize.summarize(voice_text)
 
         print(summarize_text)
+        
+        # Return both the summary and the image as a JSON response
+        return JSONResponse(content={"predicted_title": summarize_text, "wordcloud_image": img_base64})
         
         
 
     except Exception as e:
         return JSONResponse(status_code=500, content={"message": f"Error: {str(e)}"})
 
+
+@app.post("/Audio_preprocess/")
+async def AI_process_start(file: UploadFile = File(...), output_dir: str = Form(...)):
+    try:
+        print("Audio_preprocess is start")
+        
+        # Read the uploaded file
+        contents = await file.read()
+        
+        # Save the uploaded file temporarily
+        temp_file_path = f"temp_{file.filename}"
+        with open(temp_file_path, "wb") as temp_file:
+            temp_file.write(contents)
+        
+        audio = AudioSegment.from_file(temp_file_path)
+        
+        
+        split_audio(audio, output_dir)
+        
+        # Remove the temporary file
+        os.remove(temp_file_path)
+        
+        return JSONResponse(status_code=200, content={"message": "Audio processing completed successfully."})
+
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"message": f"Error: {str(e)}"})
 
 
 if __name__ == "__main__":

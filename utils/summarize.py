@@ -1,11 +1,13 @@
 from transformers import PreTrainedTokenizerFast, BartForConditionalGeneration,AutoTokenizer
-tokenizer = PreTrainedTokenizerFast.from_pretrained("ainize/kobart-news")
-model = BartForConditionalGeneration.from_pretrained("ainize/kobart-news")
+# tokenizer = PreTrainedTokenizerFast.from_pretrained("ainize/kobart-news")
+# model = BartForConditionalGeneration.from_pretrained("ainize/kobart-news")
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-
-
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from matplotlib import rc
 import nltk
-
+import io
+import base64
 nltk.download('punkt')
 
 model_dir = "lcw99/t5-base-korean-text-summary"
@@ -44,7 +46,21 @@ def summarize(text):
     predicted_title = nltk.sent_tokenize(decoded_output.strip())[0]
 
     print("predicted_title",predicted_title)
+    #,family="AppleGothic"
+    wordcloud_text = WordCloud(width=800, height=400, background_color='white',font_path='AppleGothic').generate(text)
+    img_buffer = io.BytesIO()
+    plt.figure(figsize=(10, 5))
+    plt.imshow(wordcloud_text, interpolation='bilinear')
+    plt.axis('off')
+    plt.title('Original Text Word Cloud')
+    plt.savefig(img_buffer, format='png')
+    plt.close()
+    
+    img_buffer.seek(0)  # Rewind the buffer to the beginning
 
-    return predicted_title
+    img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
+
+
+    return predicted_title, img_base64
 
 
