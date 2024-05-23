@@ -24,12 +24,22 @@ async def AI_process_start(user_id):
 
         folder_path=os.path.dirname(folder_path)
         folder_path=os.path.join(folder_path,'tmp')
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+            print(f"Directory '{folder_path}' created.")
+        else:
+            print(f"Directory '{folder_path}' already exists.")
+
         text_path = os.path.join(folder_path,'text')
+        os.makedirs(text_path)
+
+
         #save text voice_text to text_path 'data.txt'
         with open(os.path.join(text_path,'data.txt'), 'w', encoding='utf-8') as file:
             file.write(voice_text)
 
         image_path = os.path.join(folder_path,'img')
+        os.makedirs(image_path)
         summarize_text=summarize.summarize(voice_text,image_path)
 
         print("summarize finish")
@@ -157,5 +167,6 @@ if __name__ == "__main__":
     import uvicorn
 
     # uvicorn을 사용하여 FastAPI 서버 실행
-    uvicorn.run(app, host="*********", port=8000)
+    # http://220.149.250.118:8000x
+    uvicorn.run(app, host="220.149.250.118", port=8000)
 
