@@ -50,7 +50,6 @@ def summarize(text,image_path):
         predicted_title = nltk.sent_tokenize(decoded_output.strip())[0]
 
         print("predicted_title",predicted_title)
-        #,family="AppleGothic"
         wordcloud_text = WordCloud(width=800, height=400, background_color='white',font_path="C:\Windows\Fonts\H2HDRM.TTF").generate(text)#,font_path='AppleGothic'
         print("draw wordcloud_text")
         img_buffer = io.BytesIO()
@@ -58,16 +57,15 @@ def summarize(text,image_path):
         plt.imshow(wordcloud_text, interpolation='bilinear')
         plt.axis('off')
         plt.title('Original Text Word Cloud')
-        plt.savefig(os.path.join(image_path,'image.png'), format='png')
-        plt.close()
+        plt.savefig(img_buffer, format='png')
+        #plt.close()
         print("draw plot")
 
-        #img_buffer.seek(0)  # Rewind the buffer to the beginning
+        img_buffer.seek(0)  # Rewind the buffer to the beginning
 
-        #img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
+        img_base64 = base64.b64encode(img_buffer.getvalue()).decode('utf-8')
 
-
-        return predicted_title
+        return predicted_title,img_base64
 
     except Exception as e:
         print(e)
