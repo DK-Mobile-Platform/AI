@@ -10,21 +10,19 @@
 # 폴더 경로
 Data /
 |
-|—-user_id 
-|		|_기본폴더		
-|		      |_yy:mm:dd
-|				|_ file_name
-|					|_ img
-|					|_ full_text
-|					|_ summarize_text
+|-- user_id 
+|   |-- 기본폴더      
+|   |   |-- yy:mm:dd
+|   |       |-- file_name
+|   |           |-- img
+|   |           |-- full_text
+|   |           |-- summarize_text
 |
+|-- user_id 
 |
-|—-user_id 
+|-- user_id 
 |
-|—-user_id 
-|
-|—-user_id 
-
+|-- user_id 
 
 
 
