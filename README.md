@@ -8,24 +8,59 @@
 
 
 # 폴더 경로
+```md
 Data /
-|
-|-- user_id 
-|   |-- 기본폴더      
-|   |   |-- yy:mm:dd
-|   |       |-- file_name
-|   |           |-- img
-|   |           |-- full_text
-|   |           |-- summarize_text
-|
-|-- user_id 
-|
-|-- user_id 
-|
-|-- user_id 
+│
+├── user_id_1
+│   ├── 기본폴더
+│   │   ├── yy:mm:dd
+│   │   │   ├── file_name
+│   │   │   │   ├── img
+│   │   │   │   ├── full_text
+│   │   │   │   └── summarize_text
+│   │   │   ├── file_name
+│   │   │   │   ├── img
+│   │   │   │   ├── full_text
+│   │   │   │   └── summarize_text
+│   │   │   └── file_name
+│   │   │       ├── img
+│   │   │       ├── full_text
+│   │   │       └── summarize_text
+│   │   ├── yy:mm:dd
+│   │   │   ├── file_name
+│   │   │   │   ├── img
+│   │   │   │   ├── full_text
+│   │   │   │   └── summarize_text
+│   │   │   └── file_name
+│   │   │       ├── img
+│   │   │       ├── full_text
+│   │   │       └── summarize_text
+│   │   └── file_name
+│   │       ├── img
+│   │       ├── full_text
+│   │       └── summarize_text
+│
+├── user_id_2
+│   ├── 기본폴더
+│   │   ├── yy:mm:dd
+│   │   │   ├── file_name
+│   │   │   │   ├── img
+│   │   │   │   ├── full_text
+│   │   │   │   └── summarize_text
+│   │   │   └── file_name
+│   │   │       ├── img
+│   │   │       ├── full_text
+│   │   │       └── summarize_text
+│   │   └── file_name
+│   │       ├── img
+│   │       ├── full_text
+│   │       └── summarize_text
+│
+├── user_id_3
+│
+└── user_id_4
 
-
-
+```
 
 # 데이터
 1. [한국어 대학강의](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71627)
