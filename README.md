@@ -7,6 +7,26 @@
 4. text summarize
 
 
+# 폴더 경로
+Data /
+|
+|—-user_id 
+|		|_기본폴더		
+|		      |_yy:mm:dd
+|				|_ file_name
+|					|_ img
+|					|_ full_text
+|					|_ summarize_text
+|
+|
+|—-user_id 
+|
+|—-user_id 
+|
+|—-user_id 
+
+
+
 
 # 데이터
 1. [한국어 대학강의](https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&aihubDataSe=data&dataSetSn=71627)
